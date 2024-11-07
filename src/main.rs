@@ -7,6 +7,8 @@ fn main() {
     if args.len() == 1 {
         println!("No arguments passed. Please pass name of file to read in.");
     } else {
+        let path_graph = read_file(&args[1]);
+        println!("{:?}", path_graph);
         // TODO: read in file, construct data, process data, print result
     }
 }
