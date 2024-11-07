@@ -9,7 +9,7 @@ fn main() {
     } else {
         let path_graph = read_file(&args[1]);
         println!("{:?}", path_graph);
-        // TODO: read in file, construct data, process data, print result
+        // TODO: process data, print result
     }
 }
 
