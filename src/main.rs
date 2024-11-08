@@ -13,6 +13,8 @@ fn main() {
     }
 }
 
+/// Computes the total weight of a max-weight independent set of
+/// a path graph `pg`
 fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
     let a: Vec<u32> = Vec::with_capacity(pg.len());
     // TODO: actually compute the solutions
@@ -20,7 +22,7 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
     (a, solution)
 }
 
-/// Reads in a test case file and constructs a list
+/// Reads in a test case file that describes a path graph and constructs a list
 fn read_file(filename: &str) -> Vec<u32> {
     println!("reading data file: {filename}");
     let data = File::open(filename).unwrap();
