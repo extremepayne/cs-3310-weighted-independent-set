@@ -16,8 +16,11 @@ fn main() {
 /// Computes the total weight of a max-weight independent set of
 /// a path graph `pg`
 fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
-    let a: Vec<u32> = Vec::with_capacity(pg.len());
+    let mut a: Vec<u32> = Vec::with_capacity(pg.len());
     // TODO: actually compute the solutions
+    // Base cases
+    a[0] = 0;
+    a[1] = pg[0];
     let solution = a[pg.len() - 1];
     (a, solution)
 }
