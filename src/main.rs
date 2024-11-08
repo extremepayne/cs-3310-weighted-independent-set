@@ -13,6 +13,13 @@ fn main() {
     }
 }
 
+fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
+    let a: Vec<u32> = Vec::with_capacity(pg.len());
+    // TODO: actually compute the solutions
+    let solution = a[pg.len() - 1];
+    (a, solution)
+}
+
 /// Reads in a test case file and constructs a list
 fn read_file(filename: &str) -> Vec<u32> {
     println!("reading data file: {filename}");
