@@ -9,7 +9,7 @@ fn main() {
         println!("No arguments passed. Please pass name of file to read in.");
     } else {
         let path_graph = read_file(&args[1]);
-        println!("{:?}", path_graph);
+        // println!("{:?}", path_graph);
         let (subsolutions, max_weight) = wis(&path_graph);
         println!("solution: {max_weight}");
         println!("subsolutions: {:?}", subsolutions);
