@@ -1,7 +1,7 @@
+use std::cmp::max;
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead};
-use std::cmp::max;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -29,6 +29,7 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
     // Base cases
     a[0] = 0; // max weight for zero vertices is zero
     a[1] = pg[0]; // max weight for one vertex subgraph is the weight of the first
+
     // iterate over the remainder of indices of a
     for i in 2..n + 1 {
         // take the max of:
@@ -55,7 +56,11 @@ fn wis_reconstruction(pg: &Vec<u32>, subsolutions: &Vec<u32>) -> Vec<u32> {
         if subsolutions[i - 1] >= subsolutions[i - 2] + pg[i - 1] {
             i -= 1;
         } else {
-            s.push((i - 1).try_into().expect("More vertices than the 32 bit integer limit"));
+            s.push(
+                (i - 1)
+                    .try_into()
+                    .expect("More vertices than the 32 bit integer limit"),
+            );
             i -= 2;
         }
     }
