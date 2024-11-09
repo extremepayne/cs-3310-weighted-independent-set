@@ -12,7 +12,7 @@ fn main() {
         // println!("{:?}", path_graph);
         let (subsolutions, max_weight) = wis(&path_graph);
         println!("solution: {max_weight}");
-        println!("subsolutions: {:?}", subsolutions);
+        // println!("subsolutions: {:?}", subsolutions);
         let sln_verts = wis_reconstruction(&path_graph, &subsolutions);
         println!("Vertices involved are at indices {:?}", sln_verts);
         println!("(Using zero-indexing, so they are one off from the book's solution)");
