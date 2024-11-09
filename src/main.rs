@@ -1,6 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead};
+use std::cmp::max;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -9,19 +10,34 @@ fn main() {
     } else {
         let path_graph = read_file(&args[1]);
         println!("{:?}", path_graph);
-        // TODO: process data, print result
+        let (subsolutions, max_weight) = wis(&path_graph);
+        println!("solution: {max_weight}");
+        println!("subsolutions: {:?}", subsolutions);
+        // TODO: reconstruct vertices that are in the solution
     }
 }
 
 /// Computes the total weight of a max-weight independent set of
 /// a path graph `pg`
 fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
-    let mut a: Vec<u32> = Vec::with_capacity(pg.len());
-    // TODO: actually compute the solutions
+    // for readability
+    let n = pg.len();
+    // output array with length n + 1
+    let mut a: Vec<u32> = vec![0; n + 1];
     // Base cases
-    a[0] = 0;
-    a[1] = pg[0];
-    let solution = a[pg.len() - 1];
+    a[0] = 0; // max weight for zero vertices is zero
+    a[1] = pg[0]; // max weight for one vertex subgraph is the weight of the first
+    // iterate over the remainder of indices of a
+    for i in 2..n + 1 {
+        // take the max of:
+        //   the (i - 1)th solution
+        //   the (i - 2)th solution plus the ith element of the graph
+        a[i] = max(a[i - 1], a[i - 2] + pg[i - 1]);
+        // println!("{i}th element of path graph: {:?}", pg[i - 1]);
+        // println!("{i}: {:?}", a[i]);
+    }
+    // final answer is the answer for n vertices
+    let solution = a[n];
     (a, solution)
 }
 
