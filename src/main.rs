@@ -21,7 +21,7 @@ fn main() {
 
 /// Computes the total weight of a max-weight independent set of
 /// a path graph `pg`
-fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
+fn wis(pg: &[u32]) -> (Vec<u32>, u32) {
     // for readability
     let n = pg.len();
     // output array with length n + 1
@@ -48,7 +48,7 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
 /// by `wis`
 /// Returns an array of indices for pg that represent the vertices that are
 /// part of the solution
-fn wis_reconstruction(pg: &Vec<u32>, subsolutions: &Vec<u32>) -> Vec<u32> {
+fn wis_reconstruction(pg: &[u32], subsolutions: &[u32]) -> Vec<u32> {
     let mut s: Vec<u32> = Vec::with_capacity(subsolutions.len() / 2);
     // Start at the greatest index of subsolutions
     let mut i = subsolutions.len() - 1;
