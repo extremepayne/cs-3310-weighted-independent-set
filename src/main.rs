@@ -41,6 +41,13 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
     (a, solution)
 }
 
+/// Reconstructs the vertex indices from the array of subsolutions created
+/// by `wis`
+fn wis_reconstruction(subsolutions: &Vec<u32>) -> Vec<u32> {
+    let mut s: Vec<u32> = Vec::with_capacity(subsolutions.len() / 2);
+    s
+}
+
 /// Reads in a test case file that describes a path graph and constructs a list
 fn read_file(filename: &str) -> Vec<u32> {
     println!("reading data file: {filename}");
