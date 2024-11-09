@@ -13,7 +13,9 @@ fn main() {
         let (subsolutions, max_weight) = wis(&path_graph);
         println!("solution: {max_weight}");
         println!("subsolutions: {:?}", subsolutions);
-        // TODO: reconstruct vertices that are in the solution
+        let sln_verts = wis_reconstruction(&path_graph, &subsolutions);
+        println!("Vertices involved are at indices {:?}", sln_verts);
+        println!("(Using zero-indexing, so they are one off from the book's solution)");
     }
 }
 
@@ -43,8 +45,23 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
 
 /// Reconstructs the vertex indices from the array of subsolutions created
 /// by `wis`
-fn wis_reconstruction(subsolutions: &Vec<u32>) -> Vec<u32> {
+/// Returns an array of indices for pg that represent the vertices that are
+/// part of the solution
+fn wis_reconstruction(pg: &Vec<u32>, subsolutions: &Vec<u32>) -> Vec<u32> {
     let mut s: Vec<u32> = Vec::with_capacity(subsolutions.len() / 2);
+    // Start at the greatest index of subsolutions
+    let mut i = subsolutions.len() - 1;
+    while i >= 2 {
+        if subsolutions[i - 1] >= subsolutions[i - 2] + pg[i - 1] {
+            i -= 1;
+        } else {
+            s.push((i - 1).try_into().expect("More vertices than the 32 bit integer limit"));
+            i -= 2;
+        }
+    }
+    if i == 1 {
+        s.push(0);
+    }
     s
 }
 
