@@ -34,7 +34,7 @@ fn wis(pg: &Vec<u32>) -> (Vec<u32>, u32) {
         //   the (i - 2)th solution plus the ith element of the graph
         a[i] = max(a[i - 1], a[i - 2] + pg[i - 1]);
         // println!("{i}th element of path graph: {:?}", pg[i - 1]);
-        // println!("{i}: {:?}", a[i]);
+        // println!("subsolution for {i} vertices: {:?}", a[i]);
     }
     // final answer is the answer for n vertices
     let solution = a[n];
